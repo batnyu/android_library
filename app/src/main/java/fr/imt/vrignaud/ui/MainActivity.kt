@@ -37,14 +37,12 @@ class MainActivity : AppCompatActivity() {
                     R.id.container,
                     ListFragment(), ListFragment::class.java.name
                 )
-                .addToBackStack(ListFragment::class.java.name)
                 .commit()
         }
 
 
         bookViewModel.selected.observe(this, Observer {
             if (!dualPane && selectedId != it.isbn) {
-                Log.d("select", "WTF MAN")
                 supportFragmentManager.beginTransaction()
                     .replace(
                         R.id.container,

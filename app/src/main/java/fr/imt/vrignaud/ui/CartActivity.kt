@@ -34,7 +34,6 @@ class CartActivity : AppCompatActivity() {
     }
 
     fun getBestOffer(offers: List<Offer>) {
-
         val finalPrices = offers.map {
             when (it.type) {
                 "percentage" -> totalPrice - totalPrice * it.value / 100
@@ -46,6 +45,6 @@ class CartActivity : AppCompatActivity() {
 
         val yes = finalPrices.min()
         findViewById<TextView>(R.id.totalPrice).text = totalPrice.toString()
-        findViewById<TextView>(R.id.totalPriceWithReduc).text = yes.toString()
+        findViewById<TextView>(R.id.totalPriceWithReduc).text = yes?.toString() ?: "0"
     }
 }
