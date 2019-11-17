@@ -2,6 +2,7 @@ package fr.imt.vrignaud.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bookViewModel: BookViewModel
     lateinit var textCartItemCount: TextView
+    private var selectedId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,8 @@ class MainActivity : AppCompatActivity() {
 
 
         bookViewModel.selected.observe(this, Observer {
-            if (!dualPane) {
+            if (!dualPane && selectedId != it.isbn) {
+                Log.d("select", "WTF MAN")
                 supportFragmentManager.beginTransaction()
                     .replace(
                         R.id.container,
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     .addToBackStack(DetailFragment::class.java.name)
                     .commit()
-
+                selectedId = it.isbn
             }
         })
 
@@ -99,5 +102,10 @@ class MainActivity : AppCompatActivity() {
                 textCartItemCount.setVisibility(View.VISIBLE)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        selectedId = null
+        super.onBackPressed()
     }
 }
