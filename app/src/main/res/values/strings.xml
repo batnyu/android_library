@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">vrignaud</string>
+    <string name="choose_book">Sélectionnez un livre</string>
+    <string name="add_to_cart">Ajouter au panier</string>
+    <string name="desc_img_book">Image du livre</string>
+    <string name="prix_total">Prix total :</string>
+    <string name="avec_r_duction">Avec réduction :</string>
+    <string name="remove_from_cart">remove from cart</string>
+    <plurals name="price">
+        <item quantity="one">%1$d euro</item>
+        <item quantity="other">%1$d euros</item>
+    </plurals>
+</resources>
